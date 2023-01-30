@@ -23,7 +23,13 @@ RUN apt update \
                    net-tools \
                    iproute2 \
                    x11-apps \
-                   dosbox
+                   alsa-base \
+                   alsa-utils \
+                   pulseaudio \
+                   libsndfile1-dev \
+                   mplayer \ 
+                   dosbox \
+ && apt clean
 
 
 
@@ -54,6 +60,7 @@ COPY --chown=${USER_NAME}:${USER_NAME} \
      files/sysinfo.sh \
      files/test.sh \
      files/bash.sh \
+     files/play.sh \
      /home/${USER_NAME}/
 
 
