@@ -60,7 +60,7 @@ COPY --chown=${USER_NAME}:${USER_NAME} \
      files/sysinfo.sh \
      files/test.sh \
      files/bash.sh \
-     files/play.sh \
+     files/test_sound.sh \
      /home/${USER_NAME}/
 
 
