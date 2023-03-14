@@ -30,7 +30,7 @@ bash ./run.sh dos_games_env --entrypoint="/home/dos_games_env/bash.sh"
 
 ### Dosbox hotkeys
 * Ctrl + F1    - Show the keymapper configuration screen
-* Ctrl + ENter - Toggle full-screen mode
+* Ctrl + Enter - Toggle full-screen mode
 * Ctrl + F10   - Capture/Release the mouse (if you need to use the mouse within DOSBox)
 * Ctrl + F9    - Kill (close) DOSBox
 
@@ -92,11 +92,35 @@ Btw, ***Blood*** uses (Voxels)[https://en.wikipedia.org/wiki/Voxel] for drawing 
 
 ### List of tested and working games
 * Blood
+* Doom
+* Doom2 (Hell on Earth)
+* DUKE3D (Duke Nukem 3D)
 * Heretic
-* Goblins
-* goblin2rus
-* RR(Redneck Rampage)
-* QfG1(Quest for Glory1 VGA)
-* sq4rus(Space Quest 4 RUS) - ! this one is stuck !
-* sq5rus(SPace Quest 5 RUS)
+* RR (Redneck Rampage)
+* Full Throttle (ENG & RU)
+* Gobliins2 (Gobliins2: The Prince Buffoon)
+* LSL1 (Leisure Suit Larry in the Land of the Lounge Lizards) (ENG and RU)
+* LSL2 (Leisure Suit Larry Goes Looking for Love (In Several Wrong Places))
+* LSL3 (Leisure Suit Larry III: Passionate Patti in Pursuit of the Pulsating Pectorals)
+* LSL5 (Leisure Suit Larry 5: Passionate Patti Does a Little Undercover Work)
+* LSL6 (Leisure Suit Larry 6: Shape Up or Slip Out!)
+* QfG1 (Quest for Glory I: So You Want to Be a Hero)
+* QfG2 (Quest for Glory II: Trial by Fire)
+* QfG3 (Quest for Glory III: Wages of War)
+* QfG4 (Quest for Glory IV: Shadows of Darkness)
+* SQ4 (Space Quest IV: Roger Wilco and the Time Rippers)
+* SQ5 (Space Quest V: The Next Mutation) (ENG and RU)
+* WC (WarCraft Orcs and Humans)
+* WC2 EN (WarCraft\ II_\ Tides_of Darkness.v 1 3.Eng)   (here was an issue with storing audio configs, check screenshots)
+* WC2 RU SPK (Warcraft 2 Tides Of Darkness Russian from СПК)
+* XCOM1 (X-Com UFO Defense)
+* HMM (Heroes of Might and Magic)
+* HMM2 (Heroes of Might and Magic 2)
+* JA (Jagged Alliance)
+* PQ1 (Police Quest: In Pursuit of the Death Angel (VGA))
+
+
+
+
+### Issues
 
