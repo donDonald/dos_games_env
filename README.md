@@ -1,7 +1,11 @@
-# dos_games_env
-dosbox for running dos games
+<div align="center">
+    <img src="images/license-MIT-blue.svg">
+</div>
 
+# Intro
+dosbox environtment for launching old dos games
 
+---
 
 
 ### To build DOSBOX image
@@ -9,7 +13,7 @@ dosbox for running dos games
 $bash ./build.sh
 ```
 
-
+---
 
 
 ### To run DOSBOX image
@@ -17,77 +21,33 @@ $bash ./build.sh
 bash ./run.sh
 ```
 
+---
 
 
+### To launch a game (let say XCOM1)
 
-### To run bash in case you want to see what's going on in DOSBOX container
+#### Launch the container
 ```
-bash ./run.sh dos_games_env --entrypoint="/home/dos_games_env/bash.sh"
+bash ./run.sh
 ```
+<p align="center">
+    <img src="images/Launching.1.png">
+</p>
 
+#### type ***dir*** command to see the list of the games
+<p align="center">
+    <img src="images/Launching.2.png">
+</p>
 
+#### Go to the game folder with ***cd*** command like ***cd XCOM1***
+<p align="center">
+    <img src="images/Launching.3.png">
+</p>
 
-
-### Dosbox hotkeys
-* Ctrl + F1    - Show the keymapper configuration screen
-* Ctrl + Enter - Toggle full-screen mode
-* Ctrl + F10   - Capture/Release the mouse (if you need to use the mouse within DOSBox)
-* Ctrl + F9    - Kill (close) DOSBox
-
-
-
-
-### Video setup
-Current solution is tested with Ubuntu 20.04 and expectes that host system has X11.
-To test that X11 forwarding works as expected, run this:
-
-```
-bash ./run.sh dos_games_env --entrypoint="/home/dos_games_env/xeyes"
-```
-You shall see xeyes popping up on the screen.
-
-
-
-
-### Sound setup
-Current solution is tested with Ubuntu 20.04 and expectes that host system has pulseaudio.
-For other host types this solution might not work.
-To test that sound forwarding works as expected, run this:
-
-```
-bash ./run.sh dos_games_env --entrypoint="/home/dos_games_env/test_sound.sh"
-```
-You shall see some traces and hear some sounds being played actually by docker container.
-
-
-
-
-##### Ordinary game sound setup
-I found these setting in www:
-```
-    https://www.dosbox.com/faq.php
-    The game doesn't detect the soundbaster.
-        Does the game have some setup/soundset/install or similar tool to setup your sound? Use that.
-        The default settings for the ***soundblaster are, port 220, irq 7, dma 1***.
-        Some games may also require you to slow down cpu emulation to detect the sound blaster correctly. 
-```
-
-and tested the next setup with Blood[https://en.wikipedia.org/wiki/Blood_(video_game)] game for DOS from 1997
-
-    Sound Card
-        - card: Sound Blaster
-        - port: 0x220
-        - irq:  7
-        - 8-bit DMA: 1
-        - 16-bit DMA: 5
-
-    Music Card {
-        - card: Sound Blaster
-
-And ***Blood*** was running with both sound and music.
-Btw, ***Blood*** uses (Voxels)[https://en.wikipedia.org/wiki/Voxel] for drawing keys and other stuff, while Maincraft usws voxwls for drawing the entire Universe.
-
-
+#### launch the game with ***START.BAT***
+<p align="center">
+    <img src="images/Launching.4.png">
+</p>
 
 
 ### List of tested and working games
@@ -119,8 +79,94 @@ Btw, ***Blood*** uses (Voxels)[https://en.wikipedia.org/wiki/Voxel] for drawing 
 * JA (Jagged Alliance)
 * PQ1 (Police Quest: In Pursuit of the Death Angel (VGA))
 
+Note that every folder has ***START.BAT*** script for running all the games the same manner.
+
+---
 
 
+### To run bash in case you want to see what's going on in DOSBOX container
+```
+bash ./run.sh dos_games_env --entrypoint="/home/dos_games_env/bash.sh"
+```
 
-### Issues
+---
+
+
+### Dosbox hotkeys
+* Ctrl + F1    - Show the keymapper configuration screen
+* Ctrl + Enter - Toggle full-screen mode
+* Ctrl + F10   - Capture/Release the mouse (if you need to use the mouse within DOSBox)
+* Ctrl + F9    - Kill (close) DOSBox
+
+---
+
+
+### Video setup
+Current solution is tested with Ubuntu 20.04 and expectes that host system has X11.\
+X forwarding is already setup this way:
+- .Xauthority and /tmp/.X11-unix:/ are mounted into container.
+- DISPLAY is assigned for SDK container
+
+Have to enable access to hosts' X server to let X apps running on hosts's DISPLAY by running
+```
+$ xhost +local:
+```
+
+To test that X11 forwarding works as expected, run this:
+
+```
+bash ./run.sh dos_games_env --entrypoint="/home/dos_games_env/xeyes"
+```
+You shall see xeyes popping up on the screen.
+
+---
+
+
+### Sound setup
+Current solution is tested with Ubuntu 20.04 and expectes that host system has pulseaudio.\
+For other host types this solution might not work.\
+To test that sound forwarding works as expected, run this:
+
+```
+bash ./run.sh dos_games_env --entrypoint="/home/dos_games_env/test_sound.sh"
+```
+You shall see some traces and hear some sounds being played actually by docker container.
+
+---
+
+
+##### Ordinary game sound setup
+I found these setting in www:
+```
+    https://www.dosbox.com/faq.php
+    The game doesn't detect the soundbaster.
+        Does the game have some setup/soundset/install or similar tool to setup your sound? Use that.
+        The default settings for the ***soundblaster are, port 220, irq 7, dma 1***.
+        Some games may also require you to slow down cpu emulation to detect the sound blaster correctly. 
+```
+
+and tested the next setup with Blood[https://en.wikipedia.org/wiki/Blood_(video_game)] game for DOS from 1997
+
+    Sound Card
+        - card: Sound Blaster
+        - port: 0x220
+        - irq:  7
+        - 8-bit DMA: 1
+        - 16-bit DMA: 5
+
+    Music Card {
+        - card: Sound Blaster
+
+And ***Blood*** was running with both sound and music.\
+Btw, ***Blood*** uses (Voxels)[https://en.wikipedia.org/wiki/Voxel] for drawing keys and other stuff, while Maincraft uses voxels for drawing the entire world.
+
+---
+
+
+### Notes
+
+#### Library
+Here is a thing I call ***Library*** containing game binaries.\
+For obvious reason I can't publish those ones.\
+Every game folder contains a link to that binaries, and therefore the binaries shall be owned by you.
 
