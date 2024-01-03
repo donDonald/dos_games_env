@@ -17,15 +17,21 @@ enable-shm = false" | tee /tmp/pulseaudio.client.conf
 PULSE_MODULE_ID=$(pactl load-module module-native-protocol-unix socket=/tmp/pulseaudio.socket)
 echo "Creating new pulse connection, PULSE_MODULE_ID:$PULSE_MODULE_ID"
 
-docker run  -it --rm $FLAGS --network=host --env DISPLAY=$DISPLAY --privileged  \
+docker run \
+    -it \
+    --rm \
+    $FLAGS \
+    --network=host \
+    --env DISPLAY=$DISPLAY \
+    --privileged  \
     -v "$HOME/.Xauthority:/home/dos_games_env/.Xauthority"  \
     -v /tmp/.X11-unix:/tmp/.X11-unix \
     --env PULSE_SERVER=unix:/tmp/pulseaudio.socket \
     --env PULSE_COOKIE=/tmp/pulseaudio.cookie \
     --volume /tmp/pulseaudio.socket:/tmp/pulseaudio.socket \
     --volume /tmp/pulseaudio.client.conf:/etc/pulse/client.conf \
-    --user $(id -u):$(id -g) \
     -v "$(pwd)/games/:/home/dos_games_env/games/" \
+    --name $IMAGE_NAME \
     $IMAGE_NAME
 
 # Unloading obsolete pulse module

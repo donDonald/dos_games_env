@@ -29,42 +29,43 @@ RUN apt update \
                    libsndfile1-dev \
                    mplayer \ 
                    dosbox \
- && apt clean
-
-
-
-
-# Setup vim and mc
-RUN echo "set tabstop=4\nset shiftwidth=4\nset softtabstop=4\nset expandtab" | tee -a /home/${USER_NAME}/.vimrc
-RUN echo "export EDITOR=vim" | tee -a /home/${USER_NAME}/.bashrc
-USER root
-RUN echo "regex/i/\.(md|log|txt|js|json|ejs|yml|j2|cfg|xml|sql)$\n    Include=editor" | tee -a /etc/mc/mc.ext
-USER ${USER_NAME}
+ && apt clean \
+# Setup mc \
+ && echo "regex/i/\.(md|log|txt|js|json|ejs|yml|j2|cfg|xml|sql|py|ipynb|sh)$\n    Include=editor" | tee -a /etc/mc/mc.ext
 
 
 
 
 # Create user
-ARG UID=2100
-ARG GID=2100
-ENV USER_NAME=dos_games_env
-RUN groupadd --gid $GID ${USER_NAME} \
- && useradd --uid $UID --gid $GID --shell /bin/bash --create-home ${USER_NAME}
-USER ${USER_NAME}
+####ARG UID=2100
+####ARG GID=2100
+####ENV USER=dos_games_env
+####ENV USER_NAME=$USER
+####RUN groupadd --gid $GID $USER_NAME \
+#### && useradd --uid $UID --gid $GID --shell /bin/bash --create-home $USER_NAME
+ENV USER=dos_games_env
+ENV USER_NAME=$USER
+RUN useradd --shell /bin/bash --create-home $USER_NAME
+
+USER $USER_NAME
+
+# Setup vim
+RUN echo "set tabstop=4\nset shiftwidth=4\nset softtabstop=4\nset expandtab" | tee -a /home/$USER_NAME/.vimrc \
+ && echo "export EDITOR=vim" | tee -a /home/$USER_NAME/.bashrc
 
 
 
 
-COPY --chown=${USER_NAME}:${USER_NAME} \
+COPY --chown=$USER_NAME:$USER_NAME \
      files/entrypoint.sh \
      files/sysinfo.sh \
      files/test.sh \
      files/bash.sh \
      files/test_sound.sh \
-     /home/${USER_NAME}/
+     /home/$USER_NAME/
 
 
 
 
-ENTRYPOINT /home/${USER_NAME}/entrypoint.sh
+ENTRYPOINT /home/$USER_NAME/entrypoint.sh
 
