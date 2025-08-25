@@ -22,6 +22,8 @@ docker run \
     --rm \
     $FLAGS \
     --network=host \
+    -v /etc/timezone:/etc/timezone \
+    -v /etc/localtime:/etc/localtime \
     --env DISPLAY=$DISPLAY \
     --privileged  \
     -v "$HOME/.Xauthority:/home/dos_games_env/.Xauthority"  \

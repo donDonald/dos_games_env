@@ -8,6 +8,8 @@ docker run \
     --rm \
     $FLAGS \
     --network=host \
+    -v /etc/timezone:/etc/timezone \
+    -v /etc/localtime:/etc/localtime \
     --env DISPLAY=$DISPLAY \
     -e XDG_RUNTIME_DIR=/tmp \
     -v /run/user/$(id -u):/run/user/$(id -u) \
