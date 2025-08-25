@@ -1,4 +1,4 @@
 @Echo off
 cls
-cd FULL_T~1/RESOURCE
+cd DATA_EN/RESOURCE
 FT.EXE

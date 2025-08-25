@@ -1,5 +1,5 @@
 @Echo off
 cls
-cd LEISUR~4
+cd DATA_RU
 NEWSCIV.EXE
 cd ..

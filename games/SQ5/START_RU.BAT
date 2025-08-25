@@ -1,5 +1,5 @@
 @Echo off
 cls
-cd SPACE_~4
+cd DATA_RU
 SIERRA.EXE
 cd ..

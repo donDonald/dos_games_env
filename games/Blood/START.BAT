@@ -1,5 +1,5 @@
 @Echo off
 cls
-cd BLOOD
+cd DATA_EN
 BLOOD.EXE
 cd ..

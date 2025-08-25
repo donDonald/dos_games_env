@@ -1,5 +1,5 @@
 @Echo off
 cls
-cd GOBLII~1
+cd DATA_EN
 LOADER.EXE
 cd ..

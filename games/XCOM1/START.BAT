@@ -1,5 +1,5 @@
 @Echo off
 cls
-cd X-COM_~1
+cd DATA_EN
 UFO.BAT
 cd ..

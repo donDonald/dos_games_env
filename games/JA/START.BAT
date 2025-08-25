@@ -1,5 +1,5 @@
 @Echo off
 cls
-cd JAGGED~1
+cd DATA_EN
 JA.EXE
 cd ..

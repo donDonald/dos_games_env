@@ -1,5 +1,5 @@
 @Echo off
 cls
-cd DOOM
+cd DATA_EN
 DOOM.EXE
 cd ..

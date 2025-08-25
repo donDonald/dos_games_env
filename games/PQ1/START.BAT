@@ -1,5 +1,5 @@
 @Echo off
 cls
-cd POLICE~1
+cd DATA_EN
 scidhuv resource.pq1
 cd ..

@@ -1,5 +1,5 @@
 @Echo off
 cls
-cd SPACE_~2
+cd DAYA_EN
 SQ5.BAT
 cd ..

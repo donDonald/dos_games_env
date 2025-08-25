@@ -1,5 +1,5 @@
 @Echo off
 cls
-cd DUKE_N~1
+cd DATA_EN
 DUKE3D.EXE
 cd ..

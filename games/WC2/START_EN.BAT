@@ -1,5 +1,5 @@
 @Echo off
 cls
-cd WC2_TO~2
+cd DATA_EN
 WAR2.EXE
 cd ..

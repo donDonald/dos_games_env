@@ -1,5 +1,5 @@
 @Echo off
 cls
-cd LEISUR~1
+cd DATA_EN
 SIERRA.COM
 cd ..

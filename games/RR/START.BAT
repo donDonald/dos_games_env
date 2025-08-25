@@ -1,5 +1,5 @@
 @Echo off
 cls
-cd REDNEC~1
+cd DATA_EN
 RR.EXE
 cd ..

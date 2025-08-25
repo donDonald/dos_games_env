@@ -1,5 +1,5 @@
 @Echo off
 cls
-cd HERETIC
+cd DATA_EN
 HERETIC.EXE
 cd ..

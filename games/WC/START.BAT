@@ -1,5 +1,5 @@
 @Echo off
 cls
-cd WARCRA~1
+cd DATA_EN
 WAR.EXE
 cd ..

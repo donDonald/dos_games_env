@@ -1,5 +1,5 @@
 @Echo off
 cls
-cd QUEST_~2
+cd DATA_EN
 SCIDHUV.EXE
 cd ..

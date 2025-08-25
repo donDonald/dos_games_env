@@ -1,5 +1,5 @@
 @Echo off
 cls
-@cd FULL_T~2/RESOURCE
+@cd DATA_RU/RESOURCE
 FT.EXE
 cd ..

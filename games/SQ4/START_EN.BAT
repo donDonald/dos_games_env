@@ -1,5 +1,5 @@
 @Echo off
 cls
-cd SPACE_~2
+cd DATA_EN
 SQ4.BAT
 cd ..

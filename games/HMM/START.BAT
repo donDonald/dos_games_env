@@ -1,6 +1,6 @@
 @Echo off
 cls
-cd HEROES
+cd DATA_EN
 imgmount e HMM.iso -t iso
 HEROES.EXE
 cd ..
