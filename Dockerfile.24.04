@@ -1,0 +1,83 @@
+FROM ubuntu:24.04
+LABEL MAINTAINER="Pavel Taranov <pavel.a.taranov@gmail.com>"
+LABEL DESCRIPTION="Gaming environment for DOS games"
+
+
+
+
+ARG USER_NAME=dos_games_env
+ARG UID=2345
+ARG GID=2345
+
+
+
+
+#To skip setting itimezonei, to set timezone: echo "Australia/Adelaide" | sudo tee /etc/timezone
+ENV DEBIAN_FRONTEND=noninteractive
+
+
+
+
+# Basic tools and dosbox itself
+RUN apt update \
+ && apt install -y wget \
+                   curl \
+                   tree \
+                   gawk \
+                   zip \
+                   lsof \
+                   mc \
+                   vim \
+                   net-tools \
+                   iproute2 \
+                   x11-apps \
+                   alsa-base \
+                   libsndfile1-dev \
+                   mplayer \ 
+                   dosbox \
+                   sudo \
+ && apt clean \
+# Setup mc \
+ && echo "regex/i/\.(md|log|txt|js|json|ejs|yml|j2|cfg|xml|sql|py|ipynb|sh)$\n    Include=editor" | tee -a /etc/mc/mc.ext.ini
+
+
+
+# Install pipewire audio subsystem
+RUN apt update \
+ && apt install -y pipewire \
+                   pipewire-alsa \
+ && apt clean
+
+
+
+
+# Create a user
+RUN usermod -u 1234 ubuntu && groupmod -g 1234 ubuntu
+RUN groupadd -g $GID $USER_NAME
+RUN useradd --shell /bin/bash --create-home -u $UID -g $GID $USER_NAME
+RUN echo "${USER_NAME}:${USER_NAME}" | chpasswd
+RUN usermod -aG sudo $USER_NAME
+USER $USER_NAME
+WORKDIR /home/$USER_NAME
+
+
+
+
+# Setup vim
+RUN echo "set tabstop=4\nset shiftwidth=4\nset softtabstop=4\nset expandtab" | tee -a /home/$USER_NAME/.vimrc \
+ && echo "export EDITOR=vim" | tee -a /home/$USER_NAME/.bashrc
+
+
+
+
+COPY --chown=$USER_NAME:$USER_NAME \
+     files/entrypoint.sh \
+     files/sysinfo.sh \
+     files/bash.sh \
+     files/test_sound.sh \
+     /home/$USER_NAME/
+
+
+
+
+ENTRYPOINT ["./entrypoint.sh"]
