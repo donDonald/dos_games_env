@@ -1,5 +1,6 @@
 FROM ubuntu:20.04
-MAINTAINER Pavel Taranov <pavel.a.taranov@gmail.com>
+LABEL MAINTAINER="Pavel Taranov <pavel.a.taranov@gmail.com>"
+LABEL DESCRIPTION="Gaming environment for DOS games"
 
 
 
@@ -46,8 +47,10 @@ RUN apt update \
 ENV USER=dos_games_env
 ENV USER_NAME=$USER
 RUN useradd --shell /bin/bash --create-home $USER_NAME
-
 USER $USER_NAME
+
+
+
 
 # Setup vim
 RUN echo "set tabstop=4\nset shiftwidth=4\nset softtabstop=4\nset expandtab" | tee -a /home/$USER_NAME/.vimrc \
@@ -59,7 +62,6 @@ RUN echo "set tabstop=4\nset shiftwidth=4\nset softtabstop=4\nset expandtab" | t
 COPY --chown=$USER_NAME:$USER_NAME \
      files/entrypoint.sh \
      files/sysinfo.sh \
-     files/test.sh \
      files/bash.sh \
      files/test_sound.sh \
      /home/$USER_NAME/
@@ -67,5 +69,4 @@ COPY --chown=$USER_NAME:$USER_NAME \
 
 
 
-ENTRYPOINT /home/$USER_NAME/entrypoint.sh
-
+ENTRYPOINT ["./entrypoint.sh"]

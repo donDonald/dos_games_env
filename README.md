@@ -10,7 +10,7 @@ dosbox environtment for launching old dos games
 
 ### To build DOSBOX image
 ```
-$bash ./build.sh
+bash ./build.sh
 ```
 
 ---
